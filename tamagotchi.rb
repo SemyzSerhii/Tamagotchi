@@ -1,65 +1,58 @@
 class Tamagotchi
-  attr_reader :health, :hungre, :happy, :clean, :dead
+  attr_reader :health, :hungry, :happiness, :cleanliness
 
   STEP = 10
   MIN = 0
   MAX = 100
 
   def initialize
-    @health = 100
-    @hungre = 50
-    @happy = 100
-    @clean = 50
-    @dead = false
-    dead?
+    self.health = 100
+    self.hungry = 50
+    self.happiness = 100
+    self.cleanliness = 50
   end
 
   def feed
-    @hungre -= STEP
-    @clean -= STEP
-    @happy += STEP
-    dead?
+    self.hungry -= STEP
+    self.health += STEP
+    self.happiness += STEP
+
   end
 
   def clean
-    @clean += STEP
-    @happy += STEP
-    dead?
+    self.cleanliness += STEP
+    self.happiness += STEP
+
   end
 
   def fun
-    @happy += STEP
-    @clean -= STEP
-    @hungre += STEP
-    dead?
+    self.happiness += STEP
+    self.cleanliness -= STEP
+    self.hungry += STEP
   end
 
   private
 
-  def in_rande(value)
+  def in_range(value)
     value = MIN if value < MIN
     value = MAX if value > MAX
     value
   end
 
-  def dead?
-    @health == 0
-    @dead = true
-  end
 
   def health=(value)
-    @health = in_rande(value)
+    @health = in_range(value)
   end
 
-  def hungre=(value)
-    @hungre = in_rande(value)
+  def hungry=(value)
+    @hungry = in_range(value)
   end
 
-  def happy=(value)
-    @happy = in_rande(value)
+  def happiness=(value)
+    @happiness = in_range(value)
   end
 
-  def clean=(value)
-    @clean = in_rande(value)
+  def cleanliness=(value)
+    @cleanliness = in_range(value)
   end
 end
