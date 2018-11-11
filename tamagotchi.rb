@@ -16,13 +16,11 @@ class Tamagotchi
     self.hungry -= STEP
     self.health += STEP
     self.happiness += STEP
-
   end
 
   def clean
     self.cleanliness += STEP
     self.happiness += STEP
-
   end
 
   def fun
@@ -38,8 +36,7 @@ class Tamagotchi
     value = MAX if value > MAX
     value
   end
-
-
+  
   def health=(value)
     @health = in_range(value)
   end
