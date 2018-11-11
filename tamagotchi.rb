@@ -1,5 +1,5 @@
 class Tamagotchi
-  attr_reader :health, :hungry, :happiness, :cleanliness
+  attr_reader :health, :hungry, :energiness, :cleanliness
 
   STEP = 10
   MIN = 0
@@ -8,27 +8,28 @@ class Tamagotchi
   def initialize
     self.health = 100
     self.hungry = 50
-    self.happiness = 100
+    self.energiness = 100
     self.cleanliness = 50
   end
 
   def feed
     self.hungry -= STEP
     self.health += STEP
-    self.happiness += STEP
-
+    self.energiness += STEP
   end
 
   def clean
     self.cleanliness += STEP
-    self.happiness += STEP
-
+    self.energiness -= STEP
+    self.health -= STEP if self.energiness == MIN
   end
 
-  def fun
-    self.happiness += STEP
+  def sleep
+    self.energiness += STEP
     self.cleanliness -= STEP
     self.hungry += STEP
+    self.health -= STEP if self.cleanliness == MIN
+    self.health -= STEP if self.hungry == MAX
   end
 
   private
@@ -39,7 +40,6 @@ class Tamagotchi
     value
   end
 
-
   def health=(value)
     @health = in_range(value)
   end
@@ -48,8 +48,8 @@ class Tamagotchi
     @hungry = in_range(value)
   end
 
-  def happiness=(value)
-    @happiness = in_range(value)
+  def energiness=(value)
+    @energiness = in_range(value)
   end
 
   def cleanliness=(value)
