@@ -34,11 +34,10 @@ class Requst
     tamagotchi.clean
   end
 
-  def get_fun
+  def get_sleep
     @a.gsub(/_$*/, '/')
-    tamagotchi.fun
+    tamagotchi.sleep
   end
-
 
 
   def render(template)
