@@ -32,6 +32,10 @@ class Tamagotchi
     self.health -= STEP if self.hungry == MAX
   end
 
+  def dead?
+    self.health.zero?
+  end
+
   private
 
   def in_range(value)
