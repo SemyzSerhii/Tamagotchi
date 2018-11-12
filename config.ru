@@ -1,5 +1,5 @@
 load 'requst.rb'
 
-use Rack::Reloader, 0
+use Rack::Reloader
 
 run Requst.new

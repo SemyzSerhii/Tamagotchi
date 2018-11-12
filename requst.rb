@@ -7,11 +7,19 @@ class Requst
     self.method = env['REQUEST_METHOD'].downcase
     self.path = env['REQUEST_PATH']
     self.tamagotchi ||= Tamagotchi.new
+    @request = Rack::Request.new(env)
 
     public_send(processed_methods_name)
 
-    Rack::Response.new(render('index.html.erb'))
-  rescue NoMethodError
+    case path
+    when '/tam' then Rack::Response.new(render('index.html.erb'))
+    when '/'
+    Rack::Response.new(render('name.html.erb')) do |i|
+      i.set_cookie('a', @request.params['name'] )
+      i.redirect('/tam')
+    end
+    end
+    rescue NoMethodError
     Rack::Response.new('Not Found', 404)
   end
 
@@ -39,6 +47,9 @@ class Requst
     tamagotchi.sleep
   end
 
+  def name
+    @request.cookies['a'] || 'name'
+  end
   def render(template)
     path = File.expand_path("../views/#{template}", __FILE__ )
     ERB.new(File.read(path)).result(binding)
