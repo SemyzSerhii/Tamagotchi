@@ -1,9 +1,10 @@
 class Tamagotchi
-  attr_reader :health, :hungry, :energiness, :cleanliness
-
   STEP = 10
   MIN = 0
   MAX = 100
+
+  attr_reader :health, :hungry, :energiness, :cleanliness
+
 
   def initialize
     self.health = 100
