@@ -13,17 +13,22 @@ class Requst
     Rack::Response.new(render('name.html.erb')) do |i|
       i.set_cookie('a', @request.params['name'] )
     end
-    when '/choice' then Rack::Response.new(render('choice_pet.html.erb'))
-    when '/tam' then Rack::Response.new(render('index.html.erb')) do
+    when '/choice'
+      Rack::Response.new(render('choice_pet.html.erb'))
+    when '/tam'
+      Rack::Response.new(render('index.html.erb')) do
       tamagotchi
     end
-    when '/feed' then Rack::Response.new(render('index.html.erb')) do
+    when '/feed'
+      Rack::Response.new(render('index.html.erb')) do
       tamagotchi.feed
     end
-    when '/clean' then Rack::Response.new(render('index.html.erb')) do
+    when '/clean'
+      Rack::Response.new(render('index.html.erb')) do
       tamagotchi.clean
     end
-    when '/sleep' then Rack::Response.new(render('index.html.erb')) do
+    when '/sleep'
+      Rack::Response.new(render('index.html.erb')) do
       tamagotchi.sleep
     end
     end
