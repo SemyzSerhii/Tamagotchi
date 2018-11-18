@@ -1,0 +1,36 @@
+<div>
+  <img style=" margin-top: 50px; margin-right: 630px; margin-left: 630px; height: 200px; width: 200px"
+       src="<%= tamagotchi.image %>"
+       alt="a" class="rounded-circle">
+  <h1 style="text-align: center; font-size: 70px;
+    font-family: Brush Script MT, Brush Script Std, cursive; color: mediumslateblue">
+    <%= tamagotchi.pet_name %>
+  </h1>
+</div>
+
+<div style="padding-left: 280px ">
+  <div style="float: left; padding-right: 50px">
+    <img style="float: left" src="https://img.icons8.com/cotton/150/000000/like.png">
+    <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive;  color:limegreen ">
+      <%= tamagotchi.health %> %
+    </div>
+  </div>
+  <div style="float: left; padding-right: 50px">
+    <a href="../feed"><img src="https://img.icons8.com/cotton/150/000000/hamburger.png"></a>
+    <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive; color:limegreen ">
+      <%= tamagotchi.hungry %> %
+    </div>
+  </div>
+  <div style="float: left; padding-right: 50px">
+    <a href="../sleep"><img src="https://img.icons8.com/linen/150/000000/electricity.png"></a>
+    <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive; ;color:limegreen ">
+      <%= tamagotchi.energiness %> %
+    </div>
+  </div>
+  <div>
+    <a href="../clean"><img src="https://img.icons8.com/cotton/150/000000/wash-your-hands.png"></a>
+    <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive; color:limegreen ">
+      <%= tamagotchi.cleanliness %> %
+    </div>
+  </div>
+</div>

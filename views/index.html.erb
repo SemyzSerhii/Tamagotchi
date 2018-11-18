@@ -7,52 +7,8 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body style="background-image: url(https://wallpaper-house.com/data/out/4/wallpaper2you_33271.jpg)">
-<div>
-  <% if tamagotchi.dead? %>
-    <div style="padding-left:100px; padding-right: 100px; margin-top: 50px ">
-      <h1 style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive;
-        color:black; text-align: center ">
-        Your pet <%= name_pet %> is dead
-      </h1>
-      <img style="padding-left: 500px; padding-right: 500px" src="https://img.icons8.com/cotton/200/000000/coffin.png">
-    </div>
-  <% else %>
-    <img  style=" margin-top: 50px; margin-right: 630px; margin-left: 630px; height: 200px; width: 200px"
-          src="https://img2.goodfon.ru/original/1024x1024/2/b2/kurazh-kurazh-truslivyy-pes-2811.jpg"
-          alt="a" class="rounded-circle">
-      <h1 style= "text-align: center; font-size: 70px;
-        font-family: Brush Script MT, Brush Script Std, cursive; color: mediumslateblue">
-        <%= name_pet %>
-      </h1>
-    </div>
-
-    <div style="padding-left: 280px ">
-      <div style="float: left; padding-right: 50px">
-        <img style="float: left" src="https://img.icons8.com/cotton/150/000000/like.png">
-        <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive;  color:limegreen ">
-          <%= tamagotchi.health %> %
-        </div>
-      </div>
-      <div style="float: left; padding-right: 50px">
-        <a href="../feed"><img src="https://img.icons8.com/cotton/150/000000/hamburger.png"></a>
-        <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive; color:limegreen ">
-          <%= tamagotchi.hungry %> %
-        </div>
-      </div>
-      <div style="float: left; padding-right: 50px">
-        <a href="../sleep"><img src="https://img.icons8.com/linen/150/000000/electricity.png"></a>
-        <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive; ;color:limegreen ">
-          <%= tamagotchi.energiness %> %
-        </div>
-      </div>
-      <div>
-        <a href="../clean"><img src="https://img.icons8.com/cotton/150/000000/wash-your-hands.png"></a>
-        <div style="font-size: 100px; font-family: Brush Script MT, Brush Script Std, cursive; color:limegreen ">
-          <%= tamagotchi.cleanliness %> %
-        </div>
-      </div>
-    </div>
-  <%end %>
-</div>
+  <div>
+    <%= render("#{view}.html.erb") %>
+  </div>
 </body>
 </html>

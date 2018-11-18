@@ -2,45 +2,50 @@ load 'tamagotchi.rb'
 require 'erb'
 
 class Requst
-  attr_accessor  :tamagotchi
+  attr_accessor :tamagotchi, :request, :view
+
   def call(env)
+    self.request = Rack::Request.new(env)
+    self.view = process_request
 
-    self.tamagotchi ||= Tamagotchi.new
-    @request = Rack::Request.new(env)
+    Rack::Response.new(render('index.html.erb'), 200)
+  end
 
-    case @request.path
+  def process_request
+    return '_dead_screen' if tamagotchi&.dead?
+
+    case request.path
     when '/'
-    Rack::Response.new(render('name.html.erb')) do |i|
-      i.set_cookie('a', @request.params['name'] )
-    end
+      new_screen
     when '/choice'
-      Rack::Response.new(render('choice_pet.html.erb'))
-    when '/tam'
-      Rack::Response.new(render('index.html.erb')) do
-      tamagotchi
-    end
+      tamagotchi.pet_name = request.params['name']
+      '_pet_form'
+    when '/game'
+      tamagotchi.image = request.params['image_url']
+      '_pet_actions'
     when '/feed'
-      Rack::Response.new(render('index.html.erb')) do
       tamagotchi.feed
-    end
+      '_pet_actions'
     when '/clean'
-      Rack::Response.new(render('index.html.erb')) do
       tamagotchi.clean
-    end
+      '_pet_actions'
     when '/sleep'
-      Rack::Response.new(render('index.html.erb')) do
       tamagotchi.sleep
+      '_pet_actions'
+    else
+      '_not_found'
     end
-    end
-    rescue NoMethodError
-    Rack::Response.new('Not Found', 404)
+  rescue NoMethodError
+    new_screen
   end
 
-  def name_pet
-    @request.cookies['a'] || 'name'
+  def new_screen
+    self.tamagotchi = Tamagotchi.new
+    '_name_form'
   end
+
   def render(template)
-    path = File.expand_path("../views/#{template}", __FILE__ )
+    path = File.expand_path("../views/#{template}", __FILE__)
     ERB.new(File.read(path)).result(binding)
   end
 end
