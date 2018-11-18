@@ -4,13 +4,13 @@ class Tamagotchi
   MAX = 100
 
   attr_reader :health, :hungry, :energiness, :cleanliness
-
+  attr_accessor :pet_name, :image
 
   def initialize
-    self.health = 100
-    self.hungry = 50
-    self.energiness = 100
-    self.cleanliness = 50
+    self.health = MAX
+    self.hungry = MAX / 2
+    self.energiness = MAX
+    self.cleanliness = MAX / 2
   end
 
   def feed
@@ -22,19 +22,19 @@ class Tamagotchi
   def clean
     self.cleanliness += STEP
     self.energiness -= STEP
-    self.health -= STEP if self.energiness == MIN
+    self.health -= STEP if energiness == MIN
   end
 
   def sleep
     self.energiness += STEP
     self.cleanliness -= STEP
     self.hungry += STEP
-    self.health -= STEP if self.cleanliness == MIN
-    self.health -= STEP if self.hungry == MAX
+    self.health -= STEP if cleanliness == MIN
+    self.health -= STEP if hungry == MAX
   end
 
   def dead?
-    self.health.zero?
+    health.zero?
   end
 
   private
